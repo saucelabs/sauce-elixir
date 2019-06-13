@@ -9,10 +9,10 @@ defmodule Requester do
     {:ok, headers}
   end
 
-  def call(:GET, url, credentials) do
+  def call(:GET, url, credentials, options \\ []) do
     {:ok, headers} = build_headers(credentials)
     url = "#{credentials[:base_url]}#{url}"
-    case HTTPoison.get(url, headers) do
+    case HTTPoison.get(url, headers, params: options) do
       {:ok, %{body: raw_body}} -> Poison.Parser.parse(raw_body, Map.new())
       {:error, reason} -> {:error, reason}
     end
