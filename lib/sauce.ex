@@ -29,4 +29,14 @@ defmodule Sauce do
     {:ok, init_arg}
   end
 
+  defmodule Metrics do
+    def get(server, job_id) do
+      GenServer.call(server, {:get_metrics, job_id})
+    end
+
+    def get_baseline_history(server, job_id) do
+      GenServer.call(server, {:get_metrics_baseline_history, job_id})
+    end
+  end
+
 end
