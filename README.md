@@ -41,6 +41,11 @@ Sauce.Jobs.get(server, "job-id")
  }
  ```
 
+ ## Documentation
+
+ https://hexdocs.pm/sauce_elixir/0.1.0/
+ https://hex.pm/packages/sauce_elixir/0.1.0
+
 <!-- Links (alphabetically) -->
 [commit]: https://github.com/saucelabs/sauce-elixir/commit/HEAD
 [release]: https://github.com/saucelabs/sauce-elixir/releases/latest
