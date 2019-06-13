@@ -1,9 +1,9 @@
 defmodule Callbacks do
   def init([username, access_key, base_url]) do
     credentials = %{
-    :username => username,
-    :access_key => access_key,
-    :base_url => base_url
+      :username => username,
+      :access_key => access_key,
+      :base_url => base_url
     }
     {:ok, credentials}
   end
