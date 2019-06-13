@@ -1,6 +1,7 @@
 # SauceElixir
 
-![Language](https://img.shields.io/badge/language-elixir-yellowgreen.svg)
+[![Build Status](https://travis-ci.com/saucelabs/sauce-elixir.svg?branch=master)](https://travis-ci.com/saucelabs/sauce-elixir.svg)
+![Language](https://img.shields.io/badge/language-elixir-green.svg)
 [![Latest Release][release badge]][release]
 [![Last Commit][commit badge]][commit]
 
@@ -45,5 +46,5 @@ Sauce.Jobs.get(server, "job-id")
 [release]: https://github.com/saucelabs/sauce-elixir/releases/latest
 
 <!-- Badges (alphabetically) -->
-[commit badge]: https://img.shields.io/github/last-commit/paweldudzinski/cast.svg
-[release badge]: https://img.shields.io/github/release/paweldudzinski/cast.svg
+[commit badge]: https://img.shields.io/github/last-commit/saucelabs/sauce-elixir.svg
+[release badge]: https://img.shields.io/github/release/saucelabs/sauce-elixir.svg
