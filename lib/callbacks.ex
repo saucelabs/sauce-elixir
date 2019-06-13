@@ -31,4 +31,16 @@ defmodule Callbacks do
     response = Requester.call(endpoint[:method], endpoint[:url], credentials)
     {:reply, response, credentials}
   end
+
+  def handle_call({:get_metrics, job_id}, _from, credentials) do
+    endpoint = Endpoints.Metrics.get(job_id)
+    response = Requester.call(endpoint[:method], endpoint[:url], credentials)
+    {:reply, response, credentials}
+  end
+
+  def handle_call({:get_metrics_baseline_history, job_id}, _from, credentials) do
+    endpoint = Endpoints.Metrics.get_baseline_history(job_id)
+    response = Requester.call(endpoint[:method], endpoint[:url], credentials)
+    {:reply, response, credentials}
+  end
 end

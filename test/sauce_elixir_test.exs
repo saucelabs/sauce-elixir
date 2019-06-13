@@ -54,4 +54,36 @@ defmodule SauceElixirTest do
     )
     assert {:ok, %{"builds" => []}} = Sauce.Builds.get(server_pid)
   end
+
+  test "get metrics by job id responds with Http 200", %{bypass: bypass, server_pid: server_pid} do
+    Bypass.expect(
+      bypass,
+      fn conn ->
+        assert "GET" == conn.method
+        assert "/rest/v1/performance/metrics/12345" == conn.request_path
+        Plug.Conn.resp(
+          conn,
+          200,
+          "{\"metrics\": []}"
+        )
+      end
+    )
+    assert {:ok, %{"metrics" => []}} = Sauce.Metrics.get(server_pid, "12345")
+  end
+
+  test "get metrics baseline history by job id responds with Http 200", %{bypass: bypass, server_pid: server_pid} do
+    Bypass.expect(
+      bypass,
+      fn conn ->
+        assert "GET" == conn.method
+        assert "/rest/v1/performance/metrics/12345/baseline/history" == conn.request_path
+        Plug.Conn.resp(
+          conn,
+          200,
+          "{\"history\": []}"
+        )
+      end
+    )
+    assert {:ok, %{"history" => []}} = Sauce.Metrics.get_baseline_history(server_pid, "12345")
+  end
 end
