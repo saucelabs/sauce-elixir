@@ -1,8 +1,9 @@
 defmodule Requester do
   defp build_headers(credentials) do
-    basic_auth = "#{credentials[:username]}:#{credentials[:access_key]}" |> Base.encode64()
+    basic_auth = "#{credentials[:username]}:#{credentials[:access_key]}"
+                 |> Base.encode64()
     headers = [
-      {"Content-Type", "application/json"}, 
+      {"Content-Type", "application/json"},
       {"Authorization", "Basic #{basic_auth}"}
     ]
     {:ok, headers}
