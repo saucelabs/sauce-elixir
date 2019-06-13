@@ -13,4 +13,11 @@ defmodule Endpoints.Jobs do
     }
   end
 
+  def get_build_jobs(build_id) do
+    %{
+      :url => "/rest/v1/builds/#{build_id}/jobs",
+      :method => :GET
+    }
+  end
+
 end

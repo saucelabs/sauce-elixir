@@ -13,6 +13,10 @@ defmodule Sauce do
     def get_user_jobs(server, username) do
       GenServer.call(server, {:get_user_jobs, username})
     end
+
+    def get_build_jobs(server, build_id) do
+      GenServer.call(server, {:get_build_jobs, build_id})
+    end
   end
 
 end
