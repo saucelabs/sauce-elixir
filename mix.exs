@@ -8,7 +8,8 @@ defmodule SauceElixir.MixProject do
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-
+      description: description(),
+      package: package(),
       name: "Sauce Elixir",
       source_url: "https://github.com/saucelabs/sauce-elixir",
       docs: [
@@ -20,11 +21,27 @@ defmodule SauceElixir.MixProject do
     ]
   end
 
+  defp description do
+    """
+    Elixir client library for Sauce Labs API
+    """
+  end
+
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
     ]
+  end
+
+  defp package do
+    [
+     files: ["lib", "mix.exs", "README.md"],
+     maintainers: ["Saucelabs"],
+     licenses: ["Apache 2.0"],
+     links: %{"GitHub" => "https://github.com/saucelabs/sauce-elixir/",
+              "Docs" => "https://hexdocs.pm/sauce_elixir/"}
+     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
