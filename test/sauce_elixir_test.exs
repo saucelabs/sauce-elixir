@@ -38,4 +38,20 @@ defmodule SauceElixirTest do
     )
     assert {:ok, %{"jobs" => []}} = Sauce.Jobs.get_build_jobs(server_pid, "12345")
   end
+
+  test "list user builds", %{bypass: bypass, server_pid: server_pid} do
+    Bypass.expect(
+      bypass,
+      fn conn ->
+        assert "GET" == conn.method
+        assert "/rest/v1.1/builds" == conn.request_path
+        Plug.Conn.resp(
+          conn,
+          200,
+          "{\"builds\": []}"
+        )
+      end
+    )
+    assert {:ok, %{"builds" => []}} = Sauce.Builds.get(server_pid)
+  end
 end

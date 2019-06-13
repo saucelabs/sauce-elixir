@@ -19,4 +19,10 @@ defmodule Sauce do
     end
   end
 
+  defmodule Builds do
+    def get(server) do
+      GenServer.call(server, {:get_builds})
+    end
+  end
+
 end

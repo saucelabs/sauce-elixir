@@ -25,4 +25,10 @@ defmodule Callbacks do
     response = Requester.call(endpoint[:method], endpoint[:url], credentials)
     {:reply, response, credentials}
   end
+
+  def handle_call({:get_builds}, _from, credentials) do
+    endpoint = Endpoints.Builds.get()
+    response = Requester.call(endpoint[:method], endpoint[:url], credentials)
+    {:reply, response, credentials}
+  end
 end
