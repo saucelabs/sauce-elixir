@@ -20,4 +20,10 @@ defmodule Endpoints.Jobs do
     }
   end
 
+  def get_user_build_failed_jobs(username, build_id) do
+    %{
+      :url => "/rest/v1/#{username}/builds/#{build_id}/failed-jobs",
+      :method => :GET
+    }
+  end
 end

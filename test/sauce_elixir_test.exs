@@ -13,6 +13,7 @@ defmodule SauceElixirTest do
       fn conn ->
         assert "GET" == conn.method
         assert "/rest/v1.1/jobs/12345" == conn.request_path
+
         Plug.Conn.resp(
           conn,
           200,
@@ -20,6 +21,7 @@ defmodule SauceElixirTest do
         )
       end
     )
+
     assert {:ok, %{"job_details" => "details"}} = Sauce.Jobs.get(server_pid, "12345")
   end
 
@@ -29,6 +31,7 @@ defmodule SauceElixirTest do
       fn conn ->
         assert "GET" == conn.method
         assert "/rest/v1/builds/12345/jobs" == conn.request_path
+
         Plug.Conn.resp(
           conn,
           200,
@@ -36,7 +39,27 @@ defmodule SauceElixirTest do
         )
       end
     )
+
     assert {:ok, %{"jobs" => []}} = Sauce.Jobs.get_build_jobs(server_pid, "12345")
+  end
+
+  test "get user builds failed jobs", %{bypass: bypass, server_pid: server_pid} do
+    Bypass.expect(
+      bypass,
+      fn conn ->
+        assert "GET" == conn.method
+        assert "/rest/v1/fake-username/builds/fake-build-id/failed-jobs" == conn.request_path
+
+        Plug.Conn.resp(
+          conn,
+          200,
+          "{\"jobs\": []}"
+        )
+      end
+    )
+
+    assert {:ok, %{"jobs" => []}} =
+             Sauce.Jobs.get_user_build_failed_jobs(server_pid, "fake-username", "fake-build-id")
   end
 
   test "list user builds", %{bypass: bypass, server_pid: server_pid} do
@@ -45,6 +68,7 @@ defmodule SauceElixirTest do
       fn conn ->
         assert "GET" == conn.method
         assert "/rest/v1.1/builds" == conn.request_path
+
         Plug.Conn.resp(
           conn,
           200,
@@ -52,6 +76,7 @@ defmodule SauceElixirTest do
         )
       end
     )
+
     assert {:ok, %{"builds" => []}} = Sauce.Builds.get(server_pid)
   end
 
@@ -61,6 +86,7 @@ defmodule SauceElixirTest do
       fn conn ->
         assert "GET" == conn.method
         assert "/rest/v1/performance/metrics/12345" == conn.request_path
+
         Plug.Conn.resp(
           conn,
           200,
@@ -68,15 +94,20 @@ defmodule SauceElixirTest do
         )
       end
     )
+
     assert {:ok, %{"metrics" => []}} = Sauce.Metrics.get(server_pid, "12345")
   end
 
-  test "get metrics baseline history by job id responds with Http 200", %{bypass: bypass, server_pid: server_pid} do
+  test "get metrics baseline history by job id responds with Http 200", %{
+    bypass: bypass,
+    server_pid: server_pid
+  } do
     Bypass.expect(
       bypass,
       fn conn ->
         assert "GET" == conn.method
         assert "/rest/v1/performance/metrics/12345/baseline/history" == conn.request_path
+
         Plug.Conn.resp(
           conn,
           200,
@@ -84,6 +115,7 @@ defmodule SauceElixirTest do
         )
       end
     )
+
     assert {:ok, %{"history" => []}} = Sauce.Metrics.get_baseline_history(server_pid, "12345")
   end
 end
