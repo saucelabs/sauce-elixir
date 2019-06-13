@@ -1,6 +1,6 @@
 # SauceElixir
 
-**TODO: Add description**
+Elixir client library for Sauce Labs API
 
 ## Installation
 
