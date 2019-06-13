@@ -1,4 +1,6 @@
 defmodule Endpoints.Jobs do
+  @moduledoc false
+
   def get(id) do
     %{
       :url => "/rest/v1.1/jobs/#{id}",

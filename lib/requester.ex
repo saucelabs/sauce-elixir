@@ -1,4 +1,6 @@
 defmodule Requester do
+	@moduledoc false
+
   defp build_headers(credentials) do
     basic_auth =
       "#{credentials[:username]}:#{credentials[:access_key]}"

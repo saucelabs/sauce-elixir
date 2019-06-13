@@ -1,4 +1,6 @@
 defmodule Endpoints.Metrics do
+  @moduledoc false
+
   def get(job_id) do
     %{
       :url => "/rest/v1/performance/metrics/#{job_id}",
