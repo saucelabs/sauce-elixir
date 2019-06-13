@@ -1,5 +1,9 @@
 # SauceElixir
 
+![Language](https://img.shields.io/badge/language-elixir-yellowgreen.svg)
+[![Latest Release][release badge]][release]
+[![Last Commit][commit badge]][commit]
+
 Elixir client library for Sauce Labs API
 
 ## Installation
@@ -36,3 +40,10 @@ Sauce.Jobs.get(server, "job-id")
  }
  ```
 
+<!-- Links (alphabetically) -->
+[commit]: https://github.com/saucelabs/sauce-elixir/commit/HEAD
+[release]: https://github.com/saucelabs/sauce-elixir/releases/latest
+
+<!-- Badges (alphabetically) -->
+[commit badge]: https://img.shields.io/github/last-commit/paweldudzinski/cast.svg
+[release badge]: https://img.shields.io/github/release/paweldudzinski/cast.svg
