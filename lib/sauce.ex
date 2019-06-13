@@ -4,13 +4,7 @@ defmodule Sauce do
   # API
 
   def start(username, access_key, base_url \\ "https://saucelabs.com") do
-    IO.puts("Start sauce client: #{username}")
-    config = %{
-        :username => username,
-        :access_key => access_key,
-        :base_url => base_url
-    }
-    GenServer.start_link(__MODULE__, [config])
+    GenServer.start_link(__MODULE__, [username, access_key, base_url])
   end
 
   def get_job(server, job_id) do
@@ -19,9 +13,12 @@ defmodule Sauce do
 
   # CALLBACKS
 
-  def init(state) do
-    credentials = Enum.at(state, 0)
-    IO.puts("Event loop started for: #{Map.get(credentials, :username)}")
+  def init([username, access_key, base_url]) do
+    credentials = %{
+      :username => username,
+      :access_key => access_key,
+      :base_url => base_url
+    }
     {:ok, credentials}
   end
 
