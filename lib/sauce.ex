@@ -10,8 +10,8 @@ defmodule Sauce do
       GenServer.call(server, {:get_job, job_id})
     end
 
-    def get_user_jobs(server, username) do
-      GenServer.call(server, {:get_user_jobs, username})
+    def get_user_jobs(server, username, options \\ []) do
+      GenServer.call(server, {:get_user_jobs, username, options})
     end
 
     def get_build_jobs(server, build_id) do
@@ -23,6 +23,10 @@ defmodule Sauce do
     def get(server) do
       GenServer.call(server, {:get_builds})
     end
+  end
+
+  def init(init_arg) do
+    {:ok, init_arg}
   end
 
 end
