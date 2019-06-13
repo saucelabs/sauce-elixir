@@ -1,6 +1,6 @@
 # SauceElixir
 
-[![Build Status](https://travis-ci.com/saucelabs/sauce-elixir.svg?branch=master)](https://travis-ci.com/saucelabs/sauce-elixir.svg)
+[![Build Status](https://travis-ci.org/saucelabs/sauce-elixir.svg?branch=master)](https://travis-ci.org/saucelabs/sauce-elixir.svg?branch=master)
 ![Language](https://img.shields.io/badge/language-elixir-green.svg)
 [![Latest Release][release badge]][release]
 [![Last Commit][commit badge]][commit]
