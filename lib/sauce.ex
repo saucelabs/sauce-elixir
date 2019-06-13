@@ -9,4 +9,8 @@ defmodule Sauce do
     GenServer.call(server, {:get_job, job_id})
   end
 
+  def get_user_jobs(server, username) do
+    GenServer.call(server, {:get_user_jobs, username})
+  end
+
 end

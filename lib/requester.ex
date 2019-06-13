@@ -9,7 +9,8 @@ defmodule Requester do
 		{:ok, headers} = build_headers(credentials)
 		url = "#{credentials[:base_url]}#{url}"
 	    case HTTPoison.get(url, headers) do
-	      {:ok, %{body: raw_body}} -> Poison.Parser.parse(raw_body, Map.new())
+				{:ok, %{body: raw_body}} ->
+					Poison.Parser.parse(raw_body, Map.new())
 	      {:error, reason} -> {:error, reason}
 	    end
 	end

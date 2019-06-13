@@ -13,4 +13,9 @@ defmodule Callbacks do
         response = Requester.call(endpoint[:method], endpoint[:url], credentials)
         {:reply, response, credentials}
     end
+    def handle_call({:get_user_jobs, username}, _from, credentials) do
+        endpoint = Endpoints.Jobs.get_user_jobs(username)
+        response = Requester.call(endpoint[:method], endpoint[:url], credentials)
+        {:reply, response, credentials}
+    end
 end
