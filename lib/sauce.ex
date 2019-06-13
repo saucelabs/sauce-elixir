@@ -27,14 +27,7 @@ defmodule Sauce do
 
   def handle_call({:get_job, job_id}, _from, credentials) do
     endpoint = Endpoints.Jobs.get(job_id)
-
-    basic_auth = "#{credentials[:username]}:#{credentials[:access_key]}" |> Base.encode64()
-    headers = [{"Content-Type", "application/json"}, {"Authorization", "Basic #{basic_auth}"}]
-    url = "#{credentials[:base_url]}#{endpoint[:url]}"
-    response = case HTTPoison.get(url, headers) do
-      {:ok, %{body: raw_body}} -> {:ok, raw_body}
-      {:error, reason} -> {:error, reason}
-    end
+    response = Requester.call(endpoint[:method], endpoint[:url], credentials)
     {:reply, response, credentials}
   end
 
