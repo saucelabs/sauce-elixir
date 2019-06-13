@@ -1,4 +1,6 @@
 defmodule Callbacks do
+  @moduledoc false
+
   def init([username, access_key, base_url]) do
     credentials = %{
       :username => username,

@@ -15,7 +15,24 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/sauce_elixir](https://hexdocs.pm/sauce_elixir).
+## Usage example
+
+```elixir
+{:ok, server} = Sauce.start("sauce-username", "sauce-access-key")
+Sauce.Jobs.get(server, "job-id")
+
+{:ok,
+ %{
+   "collects_automator_log" => false,
+   "app" => "",
+   "record_video" => true,
+   "id" => "job-id",
+   "log_url" => "https://assets.saucelabs.com/jobs/job-id/selenium-server.log",
+   "proxied" => false,
+   "pre_run_executable" => nil,
+   "modification_time" => 1560339420,
+   "commands_not_successful" => 2,
+   ...
+ }
+ ```
 
