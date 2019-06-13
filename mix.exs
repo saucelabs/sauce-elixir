@@ -21,6 +21,7 @@ defmodule SauceElixir.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:bypass, "~> 1.0", only: :test},
       {:httpoison, "~> 1.5"},
       {:poison, "~> 3.1"}
     ]
