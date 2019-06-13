@@ -21,5 +21,4 @@ defmodule Sauce do
     {:ok, credentials}
   end
 
-
 end
