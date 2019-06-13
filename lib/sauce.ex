@@ -14,6 +14,10 @@ defmodule Sauce do
       GenServer.call(server, {:get_user_jobs, username, options})
     end
 
+    def get_user_build_failed_jobs(server, username, build_id) do
+      GenServer.call(server, {:get_user_build_failed_jobs, username, build_id})
+    end
+
     def get_build_jobs(server, build_id) do
       GenServer.call(server, {:get_build_jobs, build_id})
     end
@@ -38,5 +42,4 @@ defmodule Sauce do
       GenServer.call(server, {:get_metrics_baseline_history, job_id})
     end
   end
-
 end
