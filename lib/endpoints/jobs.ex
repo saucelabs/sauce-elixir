@@ -8,7 +8,7 @@ defmodule Endpoints.Jobs do
     }
   end
 
-  def get_user_jobs(username) do
+  def list(username) do
     %{
       :url => "/rest/v1.1/#{username}/jobs",
       :method => :GET
@@ -22,7 +22,7 @@ defmodule Endpoints.Jobs do
     }
   end
 
-  def get_user_build_failed_jobs(username, build_id) do
+  def get_build_failed_jobs(username, build_id) do
     %{
       :url => "/rest/v1/#{username}/builds/#{build_id}/failed-jobs",
       :method => :GET

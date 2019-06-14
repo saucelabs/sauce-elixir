@@ -43,7 +43,7 @@ defmodule SauceElixirTest do
     assert {:ok, %{"jobs" => []}} = Sauce.Jobs.get_build_jobs(server_pid, "12345")
   end
 
-  test "get user builds failed jobs", %{bypass: bypass, server_pid: server_pid} do
+  test "get builds failed jobs", %{bypass: bypass, server_pid: server_pid} do
     Bypass.expect(
       bypass,
       fn conn ->
@@ -59,7 +59,7 @@ defmodule SauceElixirTest do
     )
 
     assert {:ok, %{"jobs" => []}} =
-             Sauce.Jobs.get_user_build_failed_jobs(server_pid, "fake-username", "fake-build-id")
+             Sauce.Jobs.get_build_failed_jobs(server_pid, "fake-build-id", username: "fake-username")
   end
 
   test "list user builds", %{bypass: bypass, server_pid: server_pid} do
