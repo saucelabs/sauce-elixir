@@ -23,23 +23,24 @@ defmodule Sauce do
     end
 
     @doc """
-      Gets list of jobs for a given `username`
+      Gets list of job ids for a logged user
 
-          iex> Sauce.Jobs.get_user_jobs(server_pid, "sauce-username")
+          iex> Sauce.Jobs.list(server_pid)
     """
-    @spec get_user_jobs(pid(), charlist(), list()) :: map()
-    def get_user_jobs(server, username, options \\ []) do
-      GenServer.call(server, {:get_user_jobs, username, options})
+    @spec list(pid(), list()) :: map()
+    def list(server, options \\ []) do
+      GenServer.call(server, {:list, options})
     end
 
     @doc """
-      Gets list of failed jobs for a given `username` and `build_id`
+      Gets list of failed jobs for a given `build_id`
 
-          iex> Sauce.Jobs.get_user_build_failed_jobs(server_pid, "sauce-username", "build-id")
+          iex> Sauce.Jobs.get_user_failed_jobs(server_pid, "build-id")
+          iex> Sauce.Jobs.get_user_failed_jobs(server_pid, "build-id", username: "user100")
     """
-    @spec get_user_build_failed_jobs(pid(), charlist(), charlist()) :: map()
-    def get_user_build_failed_jobs(server, username, build_id) do
-      GenServer.call(server, {:get_user_build_failed_jobs, username, build_id})
+    @spec get_build_failed_jobs(pid(), charlist(), list()) :: map()
+    def get_build_failed_jobs(server, build_id, options \\ []) do
+      GenServer.call(server, {:get_build_failed_jobs, build_id, options})
     end
 
     @doc """

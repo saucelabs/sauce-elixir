@@ -16,13 +16,15 @@ defmodule Callbacks do
       |> request_call(credentials)
   end
 
-  def handle_call({:get_user_jobs, username, options}, _from, credentials) do
-    Endpoints.Jobs.get_user_jobs(username)
+  def handle_call({:list, options}, _from, credentials) do
+    get_username(credentials, options)
+      |> Endpoints.Jobs.list
       |> request_call(credentials, options)
   end
 
-  def handle_call({:get_user_build_failed_jobs, username, build_id}, _from, credentials) do
-    Endpoints.Jobs.get_user_build_failed_jobs(username, build_id)
+  def handle_call({:get_build_failed_jobs, build_id, options}, _from, credentials) do
+    get_username(credentials, options)
+      |> Endpoints.Jobs.get_build_failed_jobs(build_id)
       |> request_call(credentials)
   end
 
@@ -49,5 +51,9 @@ defmodule Callbacks do
   defp request_call(endpoint, credentials, options \\ []) do
     response = Requester.call(endpoint[:method], endpoint[:url], credentials, options)
     {:reply, response, credentials}
+  end
+
+  defp get_username(credentials, options) do
+    options[:username] || credentials[:username]
   end
 end
