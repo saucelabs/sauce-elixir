@@ -33,6 +33,18 @@ defmodule Callbacks do
       |> request_call(credentials)
   end
 
+  def handle_call({:get_job_assets, job_id, options}, _from, credentials) do
+    get_username(credentials, options)
+      |> Endpoints.Jobs.get_job_assets(job_id)
+      |> request_call(credentials)
+  end
+
+  def handle_call({:get_job_asset_file, job_id, file_name, options}, _form, credentials) do
+    get_username(credentials, options)
+      |> Endpoints.Jobs.get_job_asset_file(job_id, file_name)
+      |> request_call(credentials)
+  end
+
   def handle_call({:get_builds}, _from, credentials) do
     Endpoints.Builds.get()
       |> request_call(credentials)
