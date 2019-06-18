@@ -42,4 +42,11 @@ defmodule Endpoints.Jobs do
       :method => :GET
     }
   end
+
+  def delete(username, job_id) do
+    %{
+      :url => "/rest/v1/#{username}/jobs/#{job_id}",
+      :method => :DELETE
+    }
+  end
 end

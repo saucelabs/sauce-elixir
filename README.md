@@ -27,8 +27,8 @@ end
 ## Usage example
 
 ```elixir
-{:ok, server} = Sauce.start("sauce-username", "sauce-access-key")
-Sauce.Jobs.get(server, "job-id")
+:ok = Sauce.start("sauce-username", "sauce-access-key")
+Sauce.Jobs.get("job-id")
 
 {:ok,
  %{
