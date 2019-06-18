@@ -4,16 +4,18 @@ GET /v1.1/jobs/{id}                                         - Sauce.Jobs.get
 GET /v1.1/{username}/jobs                                   - Sauce.Jobs.get_user_jobs
 GET /v1/builds/{id}/jobs                                    - Sauce.Jobs.get_build_jobs
 GET /v1/{username}/builds/{id}/failed-jobs                  - Sauce.Jobs.get_build_failed_jobs
-GET /v1/{username}/jobs/{id}/assets                         - Sauce.Jobs.get_assets
-GET /v1/{username}/jobs/{id}/assets/{asset_file_name}       - Sauce.Jobs.get_asset_file
+GET /v1/{username}/jobs/{id}/assets                         - Sauce.Jobs.get_job_assets
+GET /v1/{username}/jobs/{id}/assets/{asset_file_name}       - Sauce.Jobs.get_job_asset_file
 PUT /v1/{username}/jobs/{id}/stop
 PUT /v1/{username}/jobs/{id}
-DEL /v1/{username}/jobs/{id}
+DEL /v1/{username}/jobs/{id}                                - Sauce.Jobs.delete
 DEL /v1/{username}/jobs/{id}/assets
 
-{:ok, server} = Sauce.start("pawel-sauce", "e0a5bf63-8ec7-4914-906f-0e7edf870294")
-{:ok, %{"jobs" => [%{"id" => job_id}]}} = Sauce.Jobs.list(server, limit: 1)
-Sauce.Jobs.get(server, job_id)
-Sauce.Jobs.get_build_jobs(server, "464137ad44e7429b8387a5625274986d")
-Sauce.Jobs.get_build_failed_jobs(server, "464137ad44e7429b8387a5625274986d")
-Sauce.Jobs.get_job_assets(server, job_id)
+:ok = Sauce.start("pawel-sauce", "e0a5bf63-8ec7-4914-906f-0e7edf870294")
+{:ok, %{"jobs" => [%{"id" => job_id}]}} = Sauce.Jobs.list(limit: 1)
+Sauce.Jobs.get(job_id)
+Sauce.Jobs.get_build_jobs("464137ad44e7429b8387a5625274986d")
+Sauce.Jobs.get_build_failed_jobs("464137ad44e7429b8387a5625274986d")
+Sauce.Jobs.get_job_assets(job_id)
+Sauce.Jobs.get_job_asset_file(sjob_id, "selenium-server.log")
+Sauce.Jobs.delete(job_id)

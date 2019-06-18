@@ -45,6 +45,12 @@ defmodule Callbacks do
       |> request_call(credentials)
   end
 
+  def handle_call({:delete, job_id}, _form, credentials) do
+    get_username(credentials)
+      |> Endpoints.Jobs.delete(job_id)
+      |> request_call(credentials)
+  end
+
   def handle_call({:get_builds}, _from, credentials) do
     Endpoints.Builds.get()
       |> request_call(credentials)
@@ -63,6 +69,10 @@ defmodule Callbacks do
   defp request_call(endpoint, credentials, options \\ []) do
     response = Requester.call(endpoint[:method], endpoint[:url], credentials, options)
     {:reply, response, credentials}
+  end
+
+  defp get_username(credentials) do
+    credentials[:username]
   end
 
   defp get_username(credentials, options) do
