@@ -28,4 +28,18 @@ defmodule Endpoints.Jobs do
       :method => :GET
     }
   end
+
+  def get_job_assets(username, job_id) do
+    %{
+      :url => "/rest/v1/#{username}/jobs/#{job_id}/assets",
+      :method => :GET
+    }
+  end
+
+  def get_job_asset_file(username, job_id, file_name) do
+    %{
+      :url => "/rest/v1/#{username}/jobs/#{job_id}/assets/#{file_name}",
+      :method => :GET
+    }
+  end
 end
