@@ -10,12 +10,3 @@ PUT /v1/{username}/jobs/{id}/stop
 PUT /v1/{username}/jobs/{id}
 DEL /v1/{username}/jobs/{id}                                - Sauce.Jobs.delete
 DEL /v1/{username}/jobs/{id}/assets
-
-:ok = Sauce.start("pawel-sauce", "e0a5bf63-8ec7-4914-906f-0e7edf870294")
-{:ok, %{"jobs" => [%{"id" => job_id}]}} = Sauce.Jobs.list(limit: 1)
-Sauce.Jobs.get(job_id)
-Sauce.Jobs.get_build_jobs("464137ad44e7429b8387a5625274986d")
-Sauce.Jobs.get_build_failed_jobs("464137ad44e7429b8387a5625274986d")
-Sauce.Jobs.get_job_assets(job_id)
-Sauce.Jobs.get_job_asset_file(sjob_id, "selenium-server.log")
-Sauce.Jobs.delete(job_id)
