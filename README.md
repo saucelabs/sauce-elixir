@@ -57,3 +57,7 @@ Sauce.Jobs.get("job-id")
 <!-- Badges (alphabetically) -->
 [commit badge]: https://img.shields.io/github/last-commit/saucelabs/sauce-elixir.svg
 [release badge]: https://img.shields.io/github/release/saucelabs/sauce-elixir.svg
+
+## Contributing
+
+This project has been started from an internal Hackathon. We would love to have outside contributors chiming in supporting us finishing this. Please have a look at our [contribution guidelines](https://github.com/saucelabs/sauce-elixir/blob/master/CONTRUBUTING.md).
