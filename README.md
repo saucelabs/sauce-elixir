@@ -1,7 +1,3 @@
-<p align="center">
-    <img src="./img/elixir_sauce_bot.png" alt="Elixir Saucebot" />
-</p>
-
 # SauceElixir
 
 [![Build Status](https://travis-ci.org/saucelabs/sauce-elixir.svg?branch=master)](https://travis-ci.org/saucelabs/sauce-elixir.svg?branch=master)
